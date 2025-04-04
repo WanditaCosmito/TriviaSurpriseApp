@@ -51,7 +51,7 @@ const trivia = [
             "Rojo": "images/Mock1.jpg",
             "Verde": "images/Mock2.jpg"
         },
-        correctVoiceLine: "audio/impresionante.mp3",
+        correctVoiceLine: "audio/azul.mp3",
         incorrectVoiceLine: "audio/verde.mp3"
     },
 ];
