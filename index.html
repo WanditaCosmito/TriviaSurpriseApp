@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Sorpresa</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Intro Section -->
+    <div id="intro-container">
+        <h1>Bienvenida...</h1>
+        <p>¿Quieres... jugar un juego?</p>
+        <button id="start-trivia">Comenzar Trivia</button>
+    </div>
+
+    <!-- Trivia Section -->
+    <div id="trivia-container" class="hidden">
+        <div id="question-container"></div>
+        <div id="message-container" style="margin-top: 10px; font-size: 1.2rem;"></div>
+        <div id="pop-up" class="hidden">
+            <img id="pop-up-image" src="" alt="Resultado">
+            <p id="pop-up-message"></p>
+            <audio id="audio-player"></audio>
+        </div>
+        <audio id="background-music" loop></audio>
+        <label for="voice-slider">Volumen de la voz:</label>
+        <input id="voice-slider" type="range" min="0" max="1" step="0.01" value="0.5">
+        <label for="volume-slider">Volumen de la música:</label>
+        <input id="volume-slider" type="range" min="0" max="1" step="0.01" value="0.1">
+    </div>
+
+    <!-- Second Intro Section -->
+    <div id="second-intro-container" class="hidden">
+        <h1>¡Ronda Completa!</h1>
+        <p>¿Lista para la siguiente Ronda?</p>
+        <button id="start-kuroko">Comenzar...</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
