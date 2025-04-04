@@ -1,0 +1,330 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: white;
+    margin: 0;
+    background: url('images/ArtanisArt3.jpg') no-repeat center center fixed;
+    background-size: contain; /* Change from 'cover' to 'contain' */
+    background-position: center; /* Ensure the image is centered */
+    background-color: black; /* Fallback color for areas not covered by the image */
+}
+#background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Adjust opacity */
+    z-index: -1; /* Keeps it behind all content */
+}
+/* Fondo oscuro y transparente para el contenedor de preguntas */
+#question-container {
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con transparencia */
+    padding: 20px;
+    border-radius: 10px; /* Bordes redondeados */
+    color: white; /* Texto blanco para visibilidad */
+    text-align: center; /* Centra el contenido */
+    max-width: 600px; /* Ancho máximo del contenedor */
+    margin: 20px auto; /* Centra el contenedor horizontalmente */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para un mejor diseño */
+    position: relative; /* Necesario para posicionar elementos dentro */
+}
+
+/* Imagen dentro del contenedor */
+#question-container img {
+    display: block;
+    margin: 20px auto;
+    max-width: 90%; /* Ajusta el ancho máximo al contenedor */
+    max-height: 300px; /* Altura máxima razonable */
+    border: 3px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Mensaje dentro del contenedor */
+#question-container .message {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #005a9e;
+}
+
+#pop-up {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000; /* Ensure it appears above other elements */
+    max-width: 90%; /* Limit the width to fit the screen */
+    max-height: 90%; /* Limit the height to fit the screen */
+    overflow: hidden; /* Prevent overflow if the image is too large */
+}
+
+#pop-up img {
+    width: 100%; /* Make the image take up the full width of the pop-up */
+    height: auto; /* Maintain the aspect ratio */
+    display: block;
+    margin: 0 auto;
+}
+
+#pop-up video {
+    width: 100%; /* Ajusta el ancho del video al pop-up */
+    height: auto; /* Mantén la proporción del video */
+    display: block;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none; /* Elimina el elemento del flujo de la página */
+    pointer-events: none; /* Asegúrate de que no interfiera con la interacción del usuario */
+}
+
+/* Oculta el overlay al inicio */
+.hidden {
+    display: none;
+}
+
+/* Estilo del overlay */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con transparencia */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    pointer-events: auto; /* Permite la interacción cuando está visible */
+}
+
+/* Intro Section */
+#intro-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #1e3c72, #2a5298);
+    color: white;
+    text-align: center;
+    animation: fadeIn 2s ease-in-out;
+}
+
+#intro-container h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: slideIn 1.5s ease-out;
+}
+
+#intro-container p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    animation: fadeIn 2s ease-in-out;
+}
+
+#intro-container button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    animation: bounce 2s infinite;
+}
+
+#intro-container button:hover {
+    background-color: #005bb5;
+}
+
+/* Segundo Intro Section */
+#second-intro-container {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #2a5298, #1e3c72);
+    color: white;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+#second-intro-container.visible {
+    display: flex; /* Cambia a flex para que sea visible */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* CSS for fade-in animation */
+#second-intro-container {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+#second-intro-container.visible {
+    opacity: 1;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Animación para desaparecer el intro */
+.fade-out {
+    animation: fadeOut 1s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Animación para aparecer la trivia */
+.fade-in {
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+/* Posiciona el slider de volumen en la esquina inferior derecha */
+#volume-slider {
+    position: fixed;
+    bottom: 20px; /* Distancia desde la parte inferior */
+    right: 20px; /* Distancia desde la parte derecha */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    width: 150px; /* Ancho del slider */
+}
+
+label[for="volume-slider"] {
+    position: fixed;
+    bottom: 50px; /* Coloca la etiqueta justo encima del slider */
+    right: 20px;
+    color: white; /* Asegúrate de que el texto sea visible */
+    font-size: 14px;
+    z-index: 1000;
+}
+
+/* Posiciona el slider de voice lines justo encima del slider de música */
+#voice-slider {
+    position: fixed;
+    bottom: 90px; /* Distancia desde la parte inferior (justo encima del slider de música) */
+    right: 20px; /* Alineado con el slider de música */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    width: 150px; /* Ancho del slider */
+}
+
+label[for="voice-slider"] {
+    position: fixed;
+    bottom: 120px; /* Coloca la etiqueta justo encima del slider de voice lines */
+    right: 20px;
+    color: white; /* Asegúrate de que el texto sea visible */
+    font-size: 14px;
+    z-index: 1000;
+}
+
+/* Contenedor de mensajes */
+#message-container {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+}
+
+/* Imagen dentro del contenedor de mensajes */
+#message-container img {
+    display: block;
+    margin: 10px auto;
+    max-width: 100%;
+    max-height: 300px;
+    border: 3px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Fondo oscuro transparente */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con transparencia */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    pointer-events: auto; /* Permite la interacción cuando está visible */
+}
+
+/* Contenido del overlay */
+#overlay-content {
+    text-align: center;
+    color: white;
+}
+
+#overlay-content img {
+    display: block;
+    margin: 20px auto;
+    max-width: 50vw;
+    max-height: 50vh;
+    border: 6px solid #ccc;
+    border-radius: 20px;
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.5);
+}
+
+#overlay-content p {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
